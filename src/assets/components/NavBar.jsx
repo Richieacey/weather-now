@@ -83,7 +83,7 @@ export default function NavBar() {
   }, []);
   return (
     <>
-      <div className="flex justify-between flex-row w-[100%]">
+      <header className="flex justify-between flex-row w-full">
         <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/logo.svg" className="md:w-auto w-40" alt="logo" />
         <div className="relative flex items-center" ref={dropdownRef}>
           <div onClick={() => setIsOpen(!isOpen)} className="flex w-30 items-center justify-evenly flex-row bg-[hsl(243,23%,24%)] px-[14px] py-[10px] rounded-md gap-2 cursor-pointer">
@@ -93,7 +93,7 @@ export default function NavBar() {
 
 
           </div>
-          <div className={`absolute top-14 right-0 w-[230px] h-auto bg-[hsl(243,23%,24%)] rounded-xl shadow-md 
+          <div className={`absolute top-14 right-0 w-[14.375rem] h-auto bg-[hsl(243,23%,24%)] rounded-xl shadow-md 
                         border border-[hsl(240,6%,70%)] border-opacity-30 p-4 z-10 transition-all duration-300 origin-top transform 
                         ${isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0 pointer-events-none"}`}>
 
@@ -103,7 +103,7 @@ export default function NavBar() {
 
 
 
-      </div>
+      </header>
 
     </>
   )

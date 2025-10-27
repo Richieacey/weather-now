@@ -1,24 +1,22 @@
 #root {
-  margin: 0 112px;
+  margin: 0 7.3vw;
   width: 100%;
   align-self: center;
   padding-top: 2rem;
-  /* text-align: center; */
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
 }
 
 @media (max-width: 768px) {
   #root{
-    margin: 0 20px;
+    margin: 0 1.25rem;
     padding-top: 1rem;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   #root{
-    margin: 0 50px;
+    margin: 0 3.125rem;
     padding-top: 1rem;
   }
 }

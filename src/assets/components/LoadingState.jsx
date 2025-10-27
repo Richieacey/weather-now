@@ -165,7 +165,7 @@ export default function LoadingState() {
 
 
     return (
-        <>
+        <main>
             <div className='flex flex-col justify-center items-center'>
                 <h1 className='font-grotesque text-[50px] text-center font-bold py-[50px]'>How's the sky looking today?</h1>
                 <form onSubmit={handleSearch} className='flex flex-col md:flex-row gap-4 w-full md:w-[50%] relative'>
@@ -329,7 +329,7 @@ export default function LoadingState() {
 
 
 
-        </>
+        </main>
 
 
     )
