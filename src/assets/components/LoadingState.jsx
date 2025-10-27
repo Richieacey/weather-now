@@ -58,7 +58,6 @@ export default function LoadingState() {
 
 
     useEffect(() => {
-        // only run on first page load (refresh)
         const wasSearching = JSON.parse(localStorage.getItem("wasSearching") || "false");
 
 
@@ -130,7 +129,7 @@ export default function LoadingState() {
             const currentTime = foreCastData.current_weather.time;
             const timeIndexData = foreCastData.hourly.time.findIndex(t => {
                 const diff = Math.abs(new Date(t) - new Date(currentTime));
-                return diff < 1800 * 1000; // within 30 minutes
+                return diff < 1800 * 1000;
             });
             const localDate = new Date(currentTime);
             const cityDate = localDate.toLocaleDateString("en-US", {
@@ -203,7 +202,6 @@ export default function LoadingState() {
             </div>
 
             {error ? (
-                // Show error message only
                 <h1 className="error-message text-2xl text-center mt-8 font-semibold">
                     {error}
                 </h1>
@@ -215,12 +213,12 @@ export default function LoadingState() {
                     {loading ? (
 
                         <div className="flex flex-row w-[100%] mt-12 gap-8 mb-[50px]">
-                            <div className="flex flex-col items-center w-[62.5%]">
+                            <div className="flex flex-col items-center w-full md:w-[62.5%]">
                                 <div className="bg-[hsl(243,23%,24%)] w-[100%] h-[286px] rounded-2xl relative flex items-center justify-center">
                                     <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-loading.svg" alt="Loading..." className="absolute w-16 h-16 animate-spin top-[110px]" />
                                     <span className="text-white text-sm font-semibold">Loading...</span>
                                 </div>
-                                <div className="flex flex-row gap-5 w-[100%] mt-8">
+                                <div className="flex flex-row flex-wrap md:flex-nowrap gap-5 w-full mt-8">
                                     {weatherMetrics.map((metric, index) => (
                                         <WeatherValues key={index} title={metric.title} value={metric.value} />
                                     ))}
@@ -236,7 +234,7 @@ export default function LoadingState() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-[36.25%] h-auto bg-[hsl(243,23%,24%)] rounded-xl">
+                            <div className="w-1/8 md:w-[36.25%] h-auto  bg-[hsl(243,23%,24%)] rounded-xl">
 
                             </div>
                         </div>
@@ -298,7 +296,7 @@ export default function LoadingState() {
                                             <DailyForecast
                                                 key={date}
                                                 day={new Date(date).toLocaleDateString("en-US", {
-                                                    weekday: "short" // e.g. "Tue"
+                                                    weekday: "short"
                                                 })}
                                                 image_source={`${weatherImages[forecast.daily.weathercode[index]]}`}
                                                 temp_max={`${round(convertTemperature(forecast.daily.temperature_2m_max[index], selected.temperature))}°`}

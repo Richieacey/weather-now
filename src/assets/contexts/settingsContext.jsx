@@ -1,4 +1,3 @@
-// settingsContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
 
 const SettingsContext = createContext();
@@ -23,7 +22,6 @@ export function SettingsProvider({ children }) {
     setSelected((prev) => ({ ...prev, [category]: value }));
   };
 
-  // New: toggle all units at once between metric <-> imperial
   const toggleAllUnits = () => {
     setSelected((prev) => {
       const isMetric = prev.temperature === "celsius";

@@ -6,7 +6,6 @@ export function SettingsMenu() {
   const { selected, toggleAllUnits } = useSettings();
   const isMetric = selected.temperature === "celsius";
 
-  // Visual-only group for display
   const ToggleGroup = ({ label, category, options }) => (
     <div className="border-b border-gray-100 border-opacity-30 pb-4 mb-2">
       <span className="text-[hsl(240,6%,70%)] text-sm">{label}</span>
@@ -18,8 +17,6 @@ export function SettingsMenu() {
           }`}
         >
           <span>{option.label}</span>
-
-          {/* Keep the same checkmark logic */}
           {selected[category] === option.value && (
             <img
               src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-checkmark.svg"
@@ -34,7 +31,6 @@ export function SettingsMenu() {
 
   return (
     <div className="max-w-xs mx-auto text-white">
-      {/* 👇 This span is now your single toggle button */}
       <span
         onClick={toggleAllUnits}
         className="block py-2 px-2 hover:bg-[hsl(243,23%,45%)] rounded-md cursor-pointer mb-3 transition-all duration-200"
