@@ -1,18 +1,27 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useSettings } from "../contexts/settingsContext";
-
+import { useClickOutside } from "../hooks/useClickOutside"; 
 
 export function SettingsMenu() {
-  const { selected, toggleAllUnits } = useSettings();
+  
+  const { 
+    selected, 
+    toggleAllUnits, 
+    handleToggle 
+  } = useSettings();
+  
   const isMetric = selected.temperature === "celsius";
 
   const ToggleGroup = ({ label, category, options }) => (
     <div className="border-b border-gray-100 border-opacity-30 pb-4 mb-2">
       <span className="text-[hsl(240,6%,70%)] text-sm">{label}</span>
-      {options.map((option, i) => (
+      {options.map((option) => (
         <div
-          key={i}
-          className={`flex flex-row justify-between items-center px-2 py-2 rounded-lg mt-2 transition-all duration-200 ${selected[category] === option.value ? "bg-[hsl(243,23%,40%)]" : ""
+          key={option.value} 
+          
+          onClick={() => handleToggle(category, option.value)} 
+          className={`flex flex-row justify-between items-center px-2 py-2 rounded-lg mt-2 transition-all duration-200 cursor-pointer
+            ${selected[category] === option.value ? "bg-[hsl(243,23%,40%)]" : "hover:bg-[hsl(243,23%,30%)]"
             }`}
         >
           <span>{option.label}</span>
@@ -30,6 +39,7 @@ export function SettingsMenu() {
 
   return (
     <div className="max-w-xs mx-auto text-white">
+      {/* Global toggle button */}
       <span
         onClick={toggleAllUnits}
         className="block py-2 px-2 hover:bg-[hsl(243,23%,45%)] rounded-md cursor-pointer mb-3 transition-all duration-200"
@@ -67,20 +77,13 @@ export function SettingsMenu() {
   );
 }
 
+
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  useClickOutside(dropdownRef, () => setIsOpen(false));
+  
   return (
     <>
       <header className="flex justify-between flex-row w-full">
@@ -90,8 +93,6 @@ export default function NavBar() {
             <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-units.svg" alt="units" />
             <div >Units</div>
             <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-dropdown.svg" alt="dropdown" />
-
-
           </div>
           <div className={`absolute top-14 right-0 w-[14.375rem] h-auto bg-[hsl(243,23%,24%)] rounded-xl shadow-md 
                         border border-[hsl(240,6%,70%)] border-opacity-30 p-4 z-10 transition-all duration-300 origin-top transform 
@@ -100,11 +101,7 @@ export default function NavBar() {
             <SettingsMenu />
           </div>
         </div>
-
-
-
       </header>
-
     </>
   )
 }

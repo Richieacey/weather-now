@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useCallback } from "react"; // Added useCallback
 
 const SettingsContext = createContext();
 
@@ -18,11 +18,12 @@ export function SettingsProvider({ children }) {
     localStorage.setItem("selectedSettings", JSON.stringify(selected));
   }, [selected]);
 
-  const handleToggle = (category, value) => {
+  // Wrapped in useCallback for performance (prevents function recreation on every render)
+  const handleToggle = useCallback((category, value) => {
     setSelected((prev) => ({ ...prev, [category]: value }));
-  };
+  }, []); // Empty dependency array means this function is stable
 
-  const toggleAllUnits = () => {
+  const toggleAllUnits = useCallback(() => { // Also wrapped this in useCallback
     setSelected((prev) => {
       const isMetric = prev.temperature === "celsius";
       return isMetric
@@ -37,9 +38,10 @@ export function SettingsProvider({ children }) {
             precipitation: "mm",
           };
     });
-  };
+  }, []); // Empty dependency array means this function is stable
 
   return (
+    // Exposing the stable handleToggle function
     <SettingsContext.Provider value={{ selected, handleToggle, toggleAllUnits }}>
       {children}
     </SettingsContext.Provider>
