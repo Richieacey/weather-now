@@ -22,7 +22,7 @@ export function SettingsMenu() {
           {/* Keep the same checkmark logic */}
           {selected[category] === option.value && (
             <img
-              src="./src/assets/images/icon-checkmark.svg"
+              src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-checkmark.svg"
               alt="checkmark"
               className="w-4 h-4"
             />
@@ -77,12 +77,12 @@ export default function NavBar() {
     return (
         <>
             <div className="flex justify-between flex-row w-[100%]">
-                <img src="./src/assets/images/logo.svg" className="md:w-auto w-40" alt="logo" />
+                <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/logo.svg" className="md:w-auto w-40" alt="logo" />
                 <div className="relative flex items-center">
                     <div onClick={() => setIsOpen(!isOpen)} className="flex w-30 items-center justify-evenly flex-row bg-[hsl(243,23%,24%)] px-[14px] py-[10px] rounded-md gap-2 cursor-pointer">
-                    <img src="./src/assets/images/icon-units.svg" alt="units" />
+                    <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-units.svg" alt="units" />
                     <div >Units</div>
-                    <img src="./src/assets/images/icon-dropdown.svg" alt="dropdown" />
+                    <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-dropdown.svg" alt="dropdown" />
 
 
                     </div>

@@ -108,7 +108,7 @@ export default function LoadingState() {
 
             CurrentLocationData();
         }
-    }, []); // empty dependency array = run ONLY once on refresh
+    }, []); 
 
 
 
@@ -174,7 +174,7 @@ export default function LoadingState() {
                         <>
                             <div className="absolute px-[50px] w-full md:w-[75%] h-[65px] rounded-lg bg-[hsl(243,27%,20%)] bottom-[-70px] z-10 flex flex-row gap-4 items-center">
                                 <img
-                                    src="./src/assets/images/icon-loading.svg"
+                                    src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-loading.svg"
                                     alt="Loading..."
                                     className="w-6 h-6 animate-spin"
                                 />
@@ -217,7 +217,7 @@ export default function LoadingState() {
                         <div className="flex flex-row w-[100%] mt-12 gap-8 mb-[50px]">
                             <div className="flex flex-col items-center w-[62.5%]">
                                 <div className="bg-[hsl(243,23%,24%)] w-[100%] h-[286px] rounded-2xl relative flex items-center justify-center">
-                                    <img src="./src/assets/images/icon-loading.svg" alt="Loading..." className="absolute w-16 h-16 animate-spin top-[110px]" />
+                                    <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-loading.svg" alt="Loading..." className="absolute w-16 h-16 animate-spin top-[110px]" />
                                     <span className="text-white text-sm font-semibold">Loading...</span>
                                 </div>
                                 <div className="flex flex-row gap-5 w-[100%] mt-8">
@@ -248,8 +248,8 @@ export default function LoadingState() {
                         <div className="flex flex-col md:flex-row w-full mt-12 gap-8 mb-[50px]">
                             <div className="flex flex-col items-center w-full md:w-[62.5%]">
                                 <div className="bg-transparent w-full h-auto rounded-2xl relative flex items-center justify-center">
-                                    <img src="./src/assets/images/bg-today-large.svg" className="w-full h-auto hidden md:block" alt="background image" />
-                                    <img src="./src/assets/images/bg-today-small.svg" className="w-full h-auto block md:hidden" alt="background image" />
+                                    <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/bg-today-large.svg" className="w-full h-auto hidden md:block" alt="background image" />
+                                    <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/bg-today-small.svg" className="w-full h-auto block md:hidden" alt="background image" />
 
                                     <div className="flex flex-col absolute gap-6 left-10 items-center md:items-start top-12 md:top-auto">
                                         <span className="font-sans text-2xl">{city}, {country}</span>

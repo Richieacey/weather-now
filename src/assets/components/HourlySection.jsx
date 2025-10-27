@@ -149,7 +149,7 @@ export default function HourlySection({ forecast, selected }) {
                     className="cursor-pointer flex flex-row items-center py-1 px-4 bg-[hsl(243,23%,30%)] rounded gap-2 relative"
                 >
                     <span>{selectedDay}</span>
-                    <img src="./src/assets/images/icon-dropdown.svg" alt="dropdown" />
+                    <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-dropdown.svg" alt="dropdown" />
 
                     {isOpen && (
                         <div className="absolute top-full right-0 w-[150px] mt-2 bg-[hsl(243,23%,24%)] rounded-md shadow-md border border-[hsl(240,6%,70%)] border-opacity-30 p-2 flex flex-col gap-2 z-10">
