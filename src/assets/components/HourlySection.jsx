@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import HourlyForecast from "./HourlyForecast";
 import weatherImages from "../utils/weatherImages";
 import { convertTemperature, round } from "../utils/conversion";
@@ -91,11 +91,26 @@ export default function HourlySection({ forecast, selected }) {
         "Sunday",
     ];
 
+    const dropdownRef = useRef(null);
+      
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setIsOpen(false);
+        }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+    
+
     return (
         <div className="w-full">
-            <div className="flex flex-row justify-between items-center mb-6">
+            <div className="flex flex-row justify-between items-center mb-6" ref={dropdownRef}>
                 <span>Hourly Forecast</span>
                 <div
+                    
                     onClick={() => setIsOpen(!isOpen)}
                     className="cursor-pointer flex flex-row items-center py-1 px-4 bg-[hsl(243,23%,30%)] rounded gap-2 relative"
                 >

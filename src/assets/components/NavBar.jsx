@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSettings } from "../contexts/settingsContext";
 
 
@@ -12,9 +12,8 @@ export function SettingsMenu() {
       {options.map((option, i) => (
         <div
           key={i}
-          className={`flex flex-row justify-between items-center px-2 py-2 rounded-lg mt-2 transition-all duration-200 ${
-            selected[category] === option.value ? "bg-[hsl(243,23%,40%)]" : ""
-          }`}
+          className={`flex flex-row justify-between items-center px-2 py-2 rounded-lg mt-2 transition-all duration-200 ${selected[category] === option.value ? "bg-[hsl(243,23%,40%)]" : ""
+            }`}
         >
           <span>{option.label}</span>
           {selected[category] === option.value && (
@@ -69,31 +68,43 @@ export function SettingsMenu() {
 }
 
 export default function NavBar() {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-        <>
-            <div className="flex justify-between flex-row w-[100%]">
-                <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/logo.svg" className="md:w-auto w-40" alt="logo" />
-                <div className="relative flex items-center">
-                    <div onClick={() => setIsOpen(!isOpen)} className="flex w-30 items-center justify-evenly flex-row bg-[hsl(243,23%,24%)] px-[14px] py-[10px] rounded-md gap-2 cursor-pointer">
-                    <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-units.svg" alt="units" />
-                    <div >Units</div>
-                    <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-dropdown.svg" alt="dropdown" />
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  return (
+    <>
+      <div className="flex justify-between flex-row w-[100%]">
+        <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/logo.svg" className="md:w-auto w-40" alt="logo" />
+        <div className="relative flex items-center" ref={dropdownRef}>
+          <div onClick={() => setIsOpen(!isOpen)} className="flex w-30 items-center justify-evenly flex-row bg-[hsl(243,23%,24%)] px-[14px] py-[10px] rounded-md gap-2 cursor-pointer">
+            <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-units.svg" alt="units" />
+            <div >Units</div>
+            <img src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-dropdown.svg" alt="dropdown" />
 
 
-                    </div>
-                    <div className={`absolute top-14 right-0 w-[230px] h-auto bg-[hsl(243,23%,24%)] rounded-xl shadow-md 
+          </div>
+          <div className={`absolute top-14 right-0 w-[230px] h-auto bg-[hsl(243,23%,24%)] rounded-xl shadow-md 
                         border border-[hsl(240,6%,70%)] border-opacity-30 p-4 z-10 transition-all duration-300 origin-top transform 
                         ${isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0 pointer-events-none"}`}>
-                        
-                        <SettingsMenu/>
-                    </div>
-                </div>
-                
+
+            <SettingsMenu />
+          </div>
+        </div>
 
 
-            </div>
 
-        </>
-    )
+      </div>
+
+    </>
+  )
 }
