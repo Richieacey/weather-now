@@ -184,7 +184,7 @@ export default function LoadingState() {
                     )}
 
                     <img
-                        src="./src/assets/images/icon-search.svg"
+                        src="https://o5vtbz71klu9q45y.public.blob.vercel-storage.com/icon-search.svg"
                         className="absolute top-[15px] left-[15px]"
                         alt="search"
                     />
