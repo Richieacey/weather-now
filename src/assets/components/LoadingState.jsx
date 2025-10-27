@@ -66,11 +66,19 @@ export default function LoadingState() {
             const currentTime = foreCastData.current_weather.time;
             const code = foreCastData.current_weather.weathercode;
             
-            const timeIndexData = foreCastData.hourly.time.findIndex(t => {
+            // Find the index using the 30-minute tolerance window (your original method)
+            let timeIndexData = foreCastData.hourly.time.findIndex(t => {
                 const diff = Math.abs(new Date(t) - new Date(currentTime));
                 return diff < 1800 * 1000;
             });
 
+
+            if (timeIndexData === -1) {
+                // Fallback: Use the index of the first hourly entry as a guarantee
+                // This ensures data for humidity, etc., is always available.
+                timeIndexData = 0; 
+                console.warn("Could not find precise current time index. Falling back to the first hourly entry.");
+            }
             // 4. Format Date and Update State
             const localDate = new Date(currentTime);
             const cityDate = localDate.toLocaleDateString("en-US", {
