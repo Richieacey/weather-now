@@ -35,6 +35,7 @@ Tailwind CSS — Styling and responsive layout
 
 Vite — Fast development build tool
 
-Open-Meteo API (or similar) — Weather data provider
+Open-Meteo API — Weather data provider
+Ipinfo API - get current location weather data
 
 LocalStorage — Stores user preferences and last search
